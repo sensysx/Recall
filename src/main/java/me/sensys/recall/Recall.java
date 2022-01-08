@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Channel;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -33,6 +34,7 @@ public final class Recall extends JavaPlugin {
 
     private JDA jda;
     private TextChannel chatChannel;
+    private TextChannel statusChannel;
 
     @SneakyThrows
     @Override
@@ -55,6 +57,14 @@ public final class Recall extends JavaPlugin {
             getLogger().severe("Can't Connect to Discord Check the bot token in the config");
         }
 
+        String statusChannelId = getConfig().getString("status-channel-id");
+        if (statusChannelId != null) {
+            statusChannel = jda.getTextChannelById(statusChannelId);
+        }
+
+        statusChannel.sendMessage("The Server Is Turning On").queue();
+
+
         String chatChannelId = getConfig().getString("chat-channel-id");
         if (chatChannelId != null) {
             chatChannel = jda.getTextChannelById(chatChannelId);
@@ -70,12 +80,18 @@ public final class Recall extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SpigotListener(), this);
     }
 
+    String ch = getConfig().getString("Server-Status-MSG-Channel-ID:");
+
     @Override
     public void onDisable() {
         if (jda != null) jda.shutdownNow();
+
+        if (statusChannel != null) {
+            statusChannel.sendMessage("The Server Is shutting down").queue();
+        }
     }
 
-    private  void sendMessage(Player player, String content, boolean contentInAuthorLine, Color color) {
+    private void sendMessage(Player player, String content, boolean contentInAuthorLine, Color color) {
         if (chatChannel == null) return;
 
         EmbedBuilder builder = new EmbedBuilder()
@@ -100,12 +116,12 @@ public final class Recall extends JavaPlugin {
 
         @EventHandler
         private void onJoin(PlayerJoinEvent event) {
-            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "joined the game.", true, Color.GREEN);
+            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + " joined the game.", true, Color.GREEN);
         }
 
         @EventHandler
         private void onQuit(PlayerQuitEvent event) {
-            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "left the game.", true, Color.BLUE);
+            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + " left the game.", true, Color.BLUE);
         }
 
         @EventHandler
