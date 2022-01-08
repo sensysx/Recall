@@ -1,0 +1,7 @@
+name: Recall
+version: '${project.version}'
+main: me.sensys.recall.Recall
+api-version: 1.18
+authors: [ sensysx ]
+description: A Discord to Minecraft Interface Project
+website: solo.to/sensysx
