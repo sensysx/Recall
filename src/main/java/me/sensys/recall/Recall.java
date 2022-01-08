@@ -88,7 +88,7 @@ public final class Recall extends JavaPlugin {
             builder.setDescription(content);
         }
 
-        chatChannel.sendMessage((CharSequence) builder.build()).queue();
+        chatChannel.sendMessageEmbeds(builder.build()).queue();
     }
 
     public final class SpigotListener implements Listener {
@@ -99,12 +99,12 @@ public final class Recall extends JavaPlugin {
 
         @EventHandler
         private void onJoin(PlayerJoinEvent event) {
-            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "joined the game.", true, Color.green);
+            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "joined the game.", true, Color.GREEN);
         }
 
         @EventHandler
         private void onQuit(PlayerJoinEvent event) {
-            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "left the game.", true, Color.blue);
+            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "left the game.", true, Color.BLUE);
         }
 
         @EventHandler
@@ -119,7 +119,7 @@ public final class Recall extends JavaPlugin {
             String advancementKey = event.getAdvancement().getKey().getKey();
             String display = advancementToDisplayMap.get(advancementKey);
             if (display == null) return;
-            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + " has made the advancement {" + display +"}", true, Color.cyan);
+            sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + " has made the advancement {" + display +"}", true, Color.CYAN);
         }
     }
 
