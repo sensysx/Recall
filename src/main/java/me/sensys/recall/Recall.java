@@ -17,6 +17,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -103,7 +104,7 @@ public final class Recall extends JavaPlugin {
         }
 
         @EventHandler
-        private void onQuit(PlayerJoinEvent event) {
+        private void onQuit(PlayerQuitEvent event) {
             sendMessage(event.getPlayer(), event.getPlayer().getDisplayName() + "left the game.", true, Color.BLUE);
         }
 
