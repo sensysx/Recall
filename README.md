@@ -1,6 +1,6 @@
 # Recall
 A Discord to Minecraft Interface Project 
-_______________________________________________________________________________________________
+
 # Uses
 
 Allows for Minecraft to Discord chat connecton
@@ -9,8 +9,6 @@ In game chat messages, leave / join messages, and advancement messages
 will show up in a discord channel specified in the config (chat-channel-id)
 
 Also send a start/stop message when to a specific channel specifed in the config (status-channel-id)
-
-_________________________________________________________________________________________________
  
  # Setup
  
@@ -33,6 +31,4 @@ if you want the bot to send a on/off message to a channel then put then copy the
 and replace the 1234 next to the status-channel-id with the channel id for the status
 
 and then your done
-
-_____________________________________________________________________________________________________
 
