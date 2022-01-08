@@ -2,7 +2,7 @@ bot-token: '1234'
 
 chat-channel-id: '1234'
 
-status-channel-id: ''
+status-channel-id: '1234'
 
 #SKIP THIS DON'T MATTER TOO MUCH
 advancementMap:

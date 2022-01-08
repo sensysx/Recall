@@ -62,7 +62,9 @@ public final class Recall extends JavaPlugin {
             statusChannel = jda.getTextChannelById(statusChannelId);
         }
 
-        statusChannel.sendMessage("The Server Is Turning On").queue();
+        if (statusChannel != null) {
+            statusChannel.sendMessage("The Server Is Turning On").queue();
+        }
 
 
         String chatChannelId = getConfig().getString("chat-channel-id");
@@ -84,11 +86,12 @@ public final class Recall extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (jda != null) jda.shutdownNow();
 
         if (statusChannel != null) {
-            statusChannel.sendMessage("The Server Is shutting down").queue();
+            statusChannel.sendMessage("The Server Is Shutting Down").queue();
         }
+
+        if (jda != null) jda.shutdownNow();
     }
 
     private void sendMessage(Player player, String content, boolean contentInAuthorLine, Color color) {
