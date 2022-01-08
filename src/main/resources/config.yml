@@ -1,0 +1,5 @@
+DISCORD_TOKEN:
+#(true or false)
+ServStatMsg:
+#only do this if you turned server status messages (get discord channel id)
+SSMChannelID:
